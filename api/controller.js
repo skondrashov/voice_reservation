@@ -1,22 +1,23 @@
 'use strict';
-import {ApiAiClient} from "api-ai-javascript";
-const fetch = require("node-fetch");
+const fetch = require('node-fetch');
+const apiai = require('api-ai');
 
 exports.reserve = function(req, res) {
-	const client = new ApiAiClient({accessToken: '2d11d7c46ad045d588589bc072832d7e'});
-	const promise = client.textRequest(req.body.sentence);
+	var api = apiai("2d11d7c46ad045d588589bc072832d7e");
 
-	promise
-		.then(handleResponse)
-		.catch(handleError);
+	var request = api.textRequest('this is a sentence', {
+		sessionId: '<unique session id>'
+	});
 
-	function handleResponse(serverResponse) {
-		console.log(serverResponse);
-	}
+	request.on('response', function(response) {
+		console.log(response);
+	});
 
-	function handleError(serverError) {
-		console.log(serverError);
-	}
+	request.on('error', function(error) {
+		console.log(error);
+	});
+
+	request.end();
 
 	// fetch('https://graph.microsoft.com/v1.0/me/events', {
 	// 	method: "POST",
