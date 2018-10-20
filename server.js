@@ -1,16 +1,22 @@
 'use strict';
 
-var express = require('express'),
-  app = express(),
-  port = process.env.PORT || 3000,
-  bodyParser = require('body-parser');
+const
+	fs = require('fs'),
+	express = require('express'),
+	https = require('https'),
+	bodyParser = require('body-parser'),
+	routes = require('./api/routes'),
+	app = express(),
+	port = 3000,
+	httpsServer = https.createServer({
+		key:  fs.readFileSync('ssl/server.key', 'utf8'),
+		cert: fs.readFileSync('ssl/server.crt', 'utf8'),
+	}, app);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var routes = require('./api/routes');
 routes(app);
-
-app.listen(port);
+httpsServer.listen(port);
 
 console.log('voice reservation RESTful API server started on: ' + port);
