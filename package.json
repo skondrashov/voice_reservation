@@ -1,0 +1,26 @@
+{
+  "name": "voice_reservation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "api-ai-javascript": "^2.0.0-beta.14",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkondrashov/voice_reservation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tkondrashov/voice_reservation/issues"
+  },
+  "homepage": "https://github.com/tkondrashov/voice_reservation#readme"
+}
