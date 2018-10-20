@@ -2,6 +2,7 @@
 const fetch = require("node-fetch");
 
 exports.reserve = function() {
+  console.log("getting a token???")
 	fetch('https://graph.microsoft.com/v1.0/me/events', {
 		method: "POST",
 		headers: {
