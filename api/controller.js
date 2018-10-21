@@ -21,6 +21,7 @@ exports.reserve = function(req, res) {
 	let endTime = date + 'T' + (time[0]+parseInt(duration)) + ':' + time[1] + ':00';
 
 	room = room.toLowerCase().split(/ \-/);
+	console.log(room);
 	if (room.length != 3)
 		throw new Error("Room name should consist of three words. Received: " + req.body.room);
 
