@@ -104,9 +104,9 @@ exports.reserve = function(req, res) {
 	const room_name = room[0].toUpperCase() + '-' + room[1].charAt(0).toUpperCase() + room[1].substr(1) + ' ' + room[2];
 
 	let filter = [];
-	for (let attendee in attendees)
+	for (let i in attendees)
 	{
-		let name = attendee.split(' ');
+		let name = attendees[i].split(' ');
 		filter.push('(givenName eq \'' + name[0] + '\' and surname eq \'' + name[1] + '\')');
 	}
 
