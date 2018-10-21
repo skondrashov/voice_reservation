@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <button class="micButton" v-on:click="recordSpeech()"></button>
+    <button class="micButton" v-on:click="recordSpeech()"><img src="../assets/Line-style-icons-mic.svg"></button>
     <br>
     <div class="inputText" v-if="lastRequest">You said: {{lastRequest}}</div>
     <br>
