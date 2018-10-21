@@ -115,7 +115,6 @@ exports.reserve = function(req, res) {
 	fetch("https://graph.microsoft.com/v1.0/users?$filter=" + filter.join(' or '), {
 		method: "GET",
 		headers: {
-			"Content-Type": "application/json; charset=utf-8",
 			"Authorization": `Bearer ${token}`,
 		}
 	})
