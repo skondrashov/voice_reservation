@@ -5,12 +5,12 @@ exports.reserve = function(req, res) {
 	// fetch("https://graph.microsoft.com/v1.0/users?$filter=givenName eq 'Timofey' or surname eq 'Kondrashof'", {});
 
 	console.log(req.body);
-	const
+	let
 		date = req.body.result.parameters.date,
 		time = req.body.result.parameters.time,
 		room = req.body.result.parameters.Rooms;
 
-	const
+	let
 		subject = 'very cool stuff only',
 		date = '2018-11-20',
 		time = '01:00:00',
