@@ -5,7 +5,7 @@ if (!url.includes('access_token')) {
 	location.replace("https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize" +
 		"?client_id=6d98cb5f-5969-4c00-bdf6-0f3555c36037" +
 		"&response_type=token" +
-		"&redirect_uri=https://localhost:3000/" +
+		"&redirect_uri=https://35.202.128.208/" +
 		"&scope=openid" +
 			"+profile" +
 			"+email" +
