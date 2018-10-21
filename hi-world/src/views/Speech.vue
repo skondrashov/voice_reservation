@@ -12,11 +12,9 @@
       Currently supported features:
     </h3>
     <ul class="supportedFeatures">
+      <li>Schedule a meeting through voice recognition</li>
       <li>Book a conference room at a specific date and time</li>
-      <li>Add attendees to a meeting</li>
-      <li>Schedule a meeting with a subject or purpose</li>
-      <li>Check the availability of a room</li>
-      <li>Cancel a meeting</li>
+      <li>Choose who will attend the meeting</li>
     </ul>
     <div class="footerBar">
       <div class="bottomText">Timofey Kondrashov, Akshay Gupte, Jason Zhang</div>
@@ -85,7 +83,7 @@ export default {
   }
   .home {
     position: fixed;
-    top: 20%;
+    top: 15%;
     text-align: center;
     width: 100%;
   }
