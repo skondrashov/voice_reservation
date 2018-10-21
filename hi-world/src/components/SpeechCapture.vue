@@ -67,6 +67,11 @@ export default {
         // We then return the transcript property of the SpeechRecognitionAlternative object
         var speechResult = event.results[0][0].transcript;
         speechResult = speechResult.replace("Hudl", "Huddle");
+        speechResult = speechResult.replace("hudl", "Huddle ");
+        speechResult = speechResult.replace("Halo", "Huddle");
+        speechResult = speechResult.replace("Huddle for", "Huddle 4");
+        speechResult = speechResult.replace("Middlesex", "Huddle 6");
+        speechResult = speechResult.replace("Conference for", "Conference 4");
         console.log(speechResult);
 
         client.textRequest(speechResult).then((response) => {
