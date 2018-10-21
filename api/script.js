@@ -13,7 +13,7 @@ if (!url.includes('access_token')) {
 			"+People.Read");
 } else {
 	const urlsplit = url.split("access_token=");
-	const access_token = urlsplit[1].split('&');
+	const access_token = urlsplit[1].split('&')[0];
 
 	fetch('https://localhost:3000/reserve', {
 		method: "POST",
@@ -21,9 +21,7 @@ if (!url.includes('access_token')) {
 			"Content-Type": "application/json; charset=utf-8",
 		},
 		body: JSON.stringify({
-			"subject" : "very cool stuff only",
-			"token": access_token[0],
-			"room": "north huddle two",
+			"token": access_token,
 		}),
 	});
 };

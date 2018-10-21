@@ -5,8 +5,26 @@ exports.reserve = function(req, res) {
 	// fetch("https://graph.microsoft.com/v1.0/users?$filter=givenName eq 'Timofey' or surname eq 'Kondrashof'", {});
 
 	console.log(req.body);
+	const
+		date = req.body.result.parameters.date,
+		time = req.body.result.parameters.time,
+		room = req.body.result.parameters.Rooms;
 
-	let room = req.body.room.toLowerCase().split(' ');
+	const
+		subject = 'very cool stuff only',
+		date = '2018-11-20',
+		time = '01:00:00',
+		duration = '1',
+		room = 'north huddle two';
+
+	let time = time.split(':');
+	if (parseInt(time[0]) < 8)
+		time[0] = parseInt(time[0]) + 12;
+
+	let startTime = date + 'T' + time[0] + ':' + time[1] + ':00';
+	let endTime = date + 'T' + (time[0]+parseInt(duration)) + ':' + time[1] + ':00';
+
+	let room = room.toLowerCase().split(/ \-/);
 	if (room.length != 3)
 		throw new Error("Room name should consist of three words. Received: " + req.body.room);
 
@@ -62,17 +80,17 @@ exports.reserve = function(req, res) {
 			"Authorization": "Bearer " + req.body.token,
 		},
 		body: JSON.stringify({
-			"subject": req.body.subject,
+			"subject": subject,
 			"body": {
 				"contentType": "HTML",
 				"content": "Regards from Nexie :)"
 			},
 			"start": {
-				"dateTime": "2018-11-20T01:00:00",
+				"dateTime": startTime,
 				"timeZone": "Eastern Standard Time"
 			},
 			"end": {
-				"dateTime": "2018-11-20T02:00:00",
+				"dateTime": endTime,
 				"timeZone": "Eastern Standard Time"
 			},
 			"location":{
