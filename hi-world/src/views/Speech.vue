@@ -6,7 +6,7 @@
     <SpeechCapture msg="Hello"/>
     <p class="descriptionText">
       This application allows you to reserve a conference room via voice commands.
-      Press the microphone icon to speak to Nexi and they will help you schedule a meeting.
+      Press the microphone icon to speak to Nexie and they will help you schedule a meeting.
     </p>
     <h3>
       Currently supported features:

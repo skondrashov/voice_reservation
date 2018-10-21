@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
     <img class="micButton circle" v-on:click="recordSpeech" width="40" src="../assets/Line-style-icons-mic.svg">
-    <div class="inputText" v-if="lastRequest">You said: {{lastRequest}}</div>
     <div class="responseText" v-if="lastResponse">Nexie: {{lastResponse}}</div>
   </div>
 </template>
@@ -17,7 +16,6 @@ export default {
   },
   data: function() {
     return {
-      lastRequest: '',
       lastResponse: '',
       synth: window.speechSynthesis,
       voices: [],
@@ -31,7 +29,7 @@ export default {
       self.voices = self.synth.getVoices();
       for(var i = 0; i < self.voices.length; i++){
         if(self.voices[i].name == 'Google UK English Female'){
-          currentVoice = i;
+          self.currentVoice = i;
         }
       }
     };
@@ -68,7 +66,7 @@ export default {
         // The [0] returns the SpeechRecognitionAlternative at position 0.
         // We then return the transcript property of the SpeechRecognitionAlternative object
         var speechResult = event.results[0][0].transcript;
-        self.lastRequest = speechResult;
+        speechResult = speechResult.replace("Hudl", "Huddle");
 
         client.textRequest(speechResult).then((response) => {
           var speechResponse = response.result.fulfillment['speech'];
