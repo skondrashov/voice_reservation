@@ -7,15 +7,11 @@ exports.reserve = function(req, res) {
 	console.log(req.body);
 	const parameters = req.body.queryResult.parameters;
 	let
-		date = parameters.date,
-		time = parameters.time,
-		room = parameters.room;
-
-	subject = 'very cool stuff only';
-	date = date || '2018-11-20';
-	time = time || '01:00:00';
-	duration = '1';
-	room = room || 'north huddle two';
+		date     = parameters.date     || '2018-11-20',
+		time     = parameters.time     || '01:00:00',
+		room     = parameters.room     || 'north huddle two',
+		subject  = parameters.subject  || 'very cool stuff only',
+		duration = parameters.duration || '1';
 
 	time = time.split(':');
 	if (parseInt(time[0]) < 8)
