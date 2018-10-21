@@ -45,7 +45,7 @@ exports.reserve = function(req, res) {
 			time[0] = parseInt(time[0]) + 12;
 
 		let startTime = date + 'T' + time[0] + ':' + time[1] + ':00';
-		let endTime = date + 'T' + (time[0]+parseInt(duration)) + ':' + time[1] + ':00';
+		let endTime = date + 'T' + (parseInt(time[0])+parseInt(duration)) + ':' + time[1] + ':00';
 
 		room = room.toLowerCase().split(/[ \-]/);
 		if (room.length != 3)
@@ -175,6 +175,7 @@ exports.reserve = function(req, res) {
 			meeting_id = myJson.id;
 			console.log(JSON.stringify(myJson));
 		});
+		break;
 	case 'input.meeting_update':
 		// fetch("https://graph.microsoft.com/v1.0/users?$filter=givenName eq 'Timofey' or surname eq 'Kondrashof'", {});
 		fetch('https://graph.microsoft.com/v1.0/me/events/' + meeting_id, {
@@ -225,7 +226,9 @@ exports.reserve = function(req, res) {
 			myJson.id
 			console.log(JSON.stringify(myJson));
 		});
+		break;
 	case 'finalize':
-		myJson.id = '';
+		meeting_id = '';
+		break;
 	}
 };
