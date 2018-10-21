@@ -22,6 +22,8 @@ function error(speech, log)
 }
 
 exports.reserve = function(req, res) {
+	console.log(req);
+
 	const parameters = req.body.queryResult.parameters;
 	let
 		room      = parameters.room,
@@ -109,8 +111,6 @@ exports.reserve = function(req, res) {
 		let name = attendee.split(' ');
 		filter.push('(givenName eq \'' + name[0] + '\' and surname eq \'' + name[1] + '\')');
 	}
-
-	console.log(filter.join(' or '));
 
 	fetch("https://graph.microsoft.com/v1.0/users?$filter=" + filter.join(' or '), {
 		method: "GET",
