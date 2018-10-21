@@ -104,9 +104,9 @@ exports.reserve = function(req, res) {
 	const room_name = room[0].toUpperCase() + '-' + room[1].charAt(0).toUpperCase() + room[1].substr(1) + ' ' + room[2];
 
 	let filter = [];
-	for (let i in attendees)
+	for (let attendee of attendees)
 	{
-		let name = attendees[i].split(' ');
+		let name = attendee.split(' ');
 		filter.push('(givenName eq \'' + name[0] + '\' and surname eq \'' + name[1] + '\')');
 	}
 
@@ -122,9 +122,23 @@ exports.reserve = function(req, res) {
 		return response.json();
 	})
 	.then(function(myJson) {
-		console.log("bunga");
-		console.log(myJson);
-		console.log("binga");
+		let invites = [{
+			"emailAddress": {
+				"address": room.join('') + "@nexient.com",
+				"name": room_name
+			},
+			"type": "required"
+		}];
+		for (let attendee of myJson.value)
+		{
+			invites.push({
+				"emailAddress": {
+					"address": attendee.userPrincipalName,
+					"name": attendee.displayName
+				},
+				"type": "required"
+			});
+		}
 
 		fetch('https://graph.microsoft.com/v1.0/me/events', {
 			method: "POST",
@@ -149,22 +163,7 @@ exports.reserve = function(req, res) {
 				"location":{
 					"displayName": room_name
 				},
-				"attendees": [
-					{
-						"emailAddress": {
-							"address": room.join('') + "@nexient.com",
-							"name": room_name
-						},
-						"type": "required"
-					},
-					{
-						"emailAddress": {
-							"address": "tkondrashov@nexient.com",
-							"name": "Timofey Kondrashov"
-						},
-						"type": "required"
-					}
-				]
+				"attendees": invites
 			}),
 		})
 		.then(function(response) {
