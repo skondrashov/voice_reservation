@@ -5,10 +5,10 @@ exports.reserve = function(req, res) {
 	// fetch("https://graph.microsoft.com/v1.0/users?$filter=givenName eq 'Timofey' or surname eq 'Kondrashof'", {});
 
 	console.log(req.body);
-	let
-		date = req.body.result.parameters.date,
-		time = req.body.result.parameters.time,
-		room = req.body.result.parameters.Rooms;
+	// let
+	// 	date = req.body.result.parameters.date,
+	// 	time = req.body.result.parameters.time,
+	// 	room = req.body.result.parameters.Rooms;
 
 	let
 		subject = 'very cool stuff only',
@@ -24,7 +24,7 @@ exports.reserve = function(req, res) {
 	let startTime = date + 'T' + time[0] + ':' + time[1] + ':00';
 	let endTime = date + 'T' + (time[0]+parseInt(duration)) + ':' + time[1] + ':00';
 
-	let room = room.toLowerCase().split(/ \-/);
+	room = room.toLowerCase().split(/ \-/);
 	if (room.length != 3)
 		throw new Error("Room name should consist of three words. Received: " + req.body.room);
 
