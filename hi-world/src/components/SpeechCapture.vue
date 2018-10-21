@@ -1,7 +1,10 @@
 <template>
   <div class="hello">
-    <button v-on:click="recordSpeech()">Speak</button>
-    <span></span>
+    <button class="micButton" v-on:click="recordSpeech()"></button>
+    <br>
+    <div class="inputText" v-if="lastRequest">You said: {{lastRequest}}</div>
+    <br>
+    <div class="responseText" v-if="lastResponse">Nexi: {{lastResponse}}</div>
   </div>
 </template>
 
@@ -16,7 +19,8 @@ export default {
   },
   data: function() {
     return {
-      conversationLog: '',
+      lastRequest: '',
+      lastResponse: '',
       synth: window.speechSynthesis,
       voices: [],
       currentVoice: 4
@@ -55,9 +59,12 @@ export default {
         // The [0] returns the SpeechRecognitionAlternative at position 0.
         // We then return the transcript property of the SpeechRecognitionAlternative object
         var speechResult = event.results[0][0].transcript;
+        self.lastRequest = speechResult;
 
         client.textRequest(speechResult).then((response) => {
-          var utterThis = new SpeechSynthesisUtterance(response.result.fulfillment['speech']);
+          var speechResponse = response.result.fulfillment['speech'];
+          self.lastResponse = speechResponse;
+          var utterThis = new SpeechSynthesisUtterance(speechResponse);
           // wait on voices to be loaded before fetching list
           utterThis.voice = self.voices[self.currentVoice];
           self.synth.speak(utterThis);
@@ -88,5 +95,13 @@ li {
 }
 a {
   color: #42b983;
+}
+.responseText {
+  color: blue;
+  font-weight: bold;
+}
+.inputText {
+  font-weight: bold;
+  margin-top: 15px;
 }
 </style>
