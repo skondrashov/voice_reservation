@@ -1,9 +1,7 @@
 <template>
   <div class="hello">
-    <img class="micButton" v-on:click="recordSpeech()" width="40" src="../assets/Line-style-icons-mic.svg">
-    <br>
+    <img class="micButton circle" v-on:click="recordSpeech" width="40" src="../assets/Line-style-icons-mic.svg">
     <div class="inputText" v-if="lastRequest">You said: {{lastRequest}}</div>
-    <br>
     <div class="responseText" v-if="lastResponse">Nexi: {{lastResponse}}</div>
   </div>
 </template>
@@ -34,7 +32,11 @@ export default {
     };
   },
   methods: {
-    recordSpeech: function() {
+    recordSpeech: function(event) {
+      var obj = event.target;
+      obj.classList.add("circleRed");
+      obj.classList.remove("circle");
+
       var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
       var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
       var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
@@ -72,6 +74,8 @@ export default {
       }
 
       recognition.onspeechend = function() {
+        obj.classList.add("circle");
+        obj.classList.remove("circleRed");
         recognition.stop();
       }
 
@@ -104,5 +108,11 @@ a {
   border-radius: 50%;
   background-color: lightgray;
   padding: 10px;
+}
+.circle{
+    border:5px solid darkgrey;
+}
+.circleRed{
+    border:5px solid lightcoral;
 }
 </style>
