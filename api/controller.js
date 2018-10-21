@@ -110,6 +110,8 @@ exports.reserve = function(req, res) {
 		filter.push('(givenName eq \'' + name[0] + '\' and surname eq \'' + name[1] + '\')');
 	}
 
+	console.log(filter.join(' or '));
+
 	fetch("https://graph.microsoft.com/v1.0/users?$filter=" + filter.join(' or '), {
 		method: "GET",
 		headers: {
