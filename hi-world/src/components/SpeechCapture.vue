@@ -2,7 +2,7 @@
   <div class="hello">
     <img class="micButton circle" v-on:click="recordSpeech" width="40" src="../assets/Line-style-icons-mic.svg">
     <div class="inputText" v-if="lastRequest">You said: {{lastRequest}}</div>
-    <div class="responseText" v-if="lastResponse">Nexi: {{lastResponse}}</div>
+    <div class="responseText" v-if="lastResponse">Nexie: {{lastResponse}}</div>
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
       lastResponse: '',
       synth: window.speechSynthesis,
       voices: [],
-      currentVoice: 4
+      currentVoice: 4,
     }
   },
   mounted: function() {
@@ -29,6 +29,11 @@ export default {
     var self = this;
     this.synth.onvoiceschanged = function() {
       self.voices = self.synth.getVoices();
+      for(var i = 0; i < self.voices.length; i++){
+        if(self.voices[i].name == 'Google UK English Female'){
+          currentVoice = i;
+        }
+      }
     };
   },
   methods: {
