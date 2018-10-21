@@ -17,7 +17,7 @@ exports.reserve = function(req, res) {
 		duration = '1',
 		room = 'north huddle two';
 
-	let time = time.split(':');
+	time = time.split(':');
 	if (parseInt(time[0]) < 8)
 		time[0] = parseInt(time[0]) + 12;
 
