@@ -5,17 +5,17 @@ exports.reserve = function(req, res) {
 	// fetch("https://graph.microsoft.com/v1.0/users?$filter=givenName eq 'Timofey' or surname eq 'Kondrashof'", {});
 
 	console.log(req.body);
-	// let
-	// 	date = req.body.result.parameters.date,
-	// 	time = req.body.result.parameters.time,
-	// 	room = req.body.result.parameters.Rooms;
-
+	const parameters = req.body.queryResult.parameters;
 	let
-		subject = 'very cool stuff only',
-		date = '2018-11-20',
-		time = '01:00:00',
-		duration = '1',
-		room = 'north huddle two';
+		date = parameters.date,
+		time = parameters.time,
+		room = parameters.room;
+
+	subject = 'very cool stuff only';
+	date = date || '2018-11-20';
+	time = time || '01:00:00';
+	duration = '1';
+	room = room || 'north huddle two';
 
 	time = time.split(':');
 	if (parseInt(time[0]) < 8)
@@ -74,8 +74,8 @@ exports.reserve = function(req, res) {
 	const room_name = room[0].toUpperCase() + '-' + room[1].charAt(0).toUpperCase() + room[1].substr(1) + ' ' + room[2];
 
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify({ speech: 'room' }));
-    return;
+    res.json({ speech: 'room' });
+    return JSON.stringify({ speech: 'room lols' });
 
 	fetch('https://graph.microsoft.com/v1.0/me/events', {
 		method: "POST",
