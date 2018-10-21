@@ -1,6 +1,26 @@
 <template>
   <div class="home">
-    <SpeechCapture msg="Welcome to Your Vue.js App"/>
+    <div class="headerBar">
+      <div class="headerTitle">Nexient Voice-Activated Room Reservation Service</div>
+    </div>
+    <SpeechCapture msg="Hello"/>
+    <p class="descriptionText">
+      This application allows you to reserve a conference room via voice commands.
+      Press the microphone icon to speak to Nexi and they will help you schedule a meeting.
+    </p>
+    <h3>
+      Currently supported features:
+    </h3>
+    <ul class="supportedFeatures">
+      <li>Book a conference room at a specific date and time</li>
+      <li>Add attendees to a meeting</li>
+      <li>Schedule a meeting with a subject or purpose</li>
+      <li>Check the availability of a room</li>
+      <li>Cancel a meeting</li>
+    </ul>
+    <div class="footerBar">
+      <div class="bottomText">Timofey Kondrashov, Akshay Gupte, Jason Zhang</div>
+    </div>
   </div>
 </template>
 
@@ -15,3 +35,58 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  h3{
+    font-size: 30px;
+  }
+  li{
+    text-align:left;
+    margin-left: 25%;
+  }
+  .supportedFeatures{
+    width: 80%;
+    margin-left: 10%;
+    font-size: 25px;
+  }
+  .descriptionText {
+    width: 50%;
+    text-align: center;
+    margin-left: 25%;
+    font-size: 25px;
+    width: 80%;
+    margin-left: 10%;
+  }
+  .headerBar {
+    height: 12%;
+    width: 100%;
+    background-color: darkcyan;
+    top: 0;
+    left: 0;
+    color: white;
+    position: fixed;
+  }
+  .footerBar {
+    height: 12%;
+    width: 100%;
+    background-color: darkcyan;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    color: white;
+  }
+  .headerTitle {
+    margin-top: 23px;
+    font-size: 35px;
+  }
+  .bottomText {
+    margin-top: 35px;
+    font-size: 22px;
+  }
+  .home {
+    position: fixed;
+    top: 20%;
+    text-align: center;
+    width: 100%;
+  }
+</style>

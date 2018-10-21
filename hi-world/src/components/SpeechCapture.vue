@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <button class="micButton" v-on:click="recordSpeech()"><img src="../assets/Line-style-icons-mic.svg"></button>
+    <img class="micButton" v-on:click="recordSpeech()" width="40" src="../assets/Line-style-icons-mic.svg">
     <br>
     <div class="inputText" v-if="lastRequest">You said: {{lastRequest}}</div>
     <br>
@@ -85,23 +85,24 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
 a {
   color: #42b983;
 }
 .responseText {
   color: blue;
   font-weight: bold;
+  font-size: 20px;
 }
 .inputText {
   font-weight: bold;
   margin-top: 15px;
+  font-size: 20px
+}
+.micButton {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: lightgray;
+  padding: 10px;
 }
 </style>
