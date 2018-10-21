@@ -7,7 +7,7 @@ const
 	bodyParser = require('body-parser'),
 	routes = require('./api/routes'),
 	app = express(),
-	port = 3000,
+	port = 443,
 	httpsServer = https.createServer({
 		key:  fs.readFileSync('ssl/server.key', 'utf8'),
 		cert: fs.readFileSync('ssl/server.crt', 'utf8'),
