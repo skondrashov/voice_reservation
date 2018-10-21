@@ -71,7 +71,7 @@ export default {
         speechResult = speechResult.replace("Halo", "Huddle");
         speechResult = speechResult.replace("Huddle for", "Huddle 4");
         speechResult = speechResult.replace("Middlesex", "Huddle 6");
-        speechResult = speechResult.replace("Conference for", "Conference 4");
+        speechResult = speechResult.replace("conference for", "Conference 4");
         console.log(speechResult);
 
         client.textRequest(speechResult).then((response) => {
