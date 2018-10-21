@@ -36,6 +36,8 @@ export default {
       var obj = event.target;
       obj.classList.add("circleRed");
       obj.classList.remove("circle");
+      obj.classList.add("micButtonRed");
+      obj.classList.remove("micButton");
 
       var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
       var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
@@ -76,6 +78,8 @@ export default {
       recognition.onspeechend = function() {
         obj.classList.add("circle");
         obj.classList.remove("circleRed");
+        obj.classList.add("micButton");
+        obj.classList.remove("micButtonRed");
         recognition.stop();
       }
 
@@ -107,6 +111,13 @@ a {
   height: 150px;
   border-radius: 50%;
   background-color: lightgray;
+  padding: 10px;
+}
+.micButtonRed {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: lightpink;
   padding: 10px;
 }
 .circle{
