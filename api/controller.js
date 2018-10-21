@@ -22,7 +22,7 @@ function error(speech, log)
 }
 
 exports.reserve = function(req, res) {
-	console.log(req.body.parameters.attendees);
+	console.log(req.body.queryResult.parameters);
 
 	const parameters = req.body.queryResult.parameters;
 	let
