@@ -129,6 +129,12 @@ exports.reserve = function(req, res) {
 			},
 			"type": "required"
 		}];
+
+		console.log("blah blah blah");
+		console.log(myJson);
+		console.log(myJson.value);
+		console.log("blah blah blah23523523");
+
 		for (let attendee of myJson.value)
 		{
 			invites.push({
