@@ -26,11 +26,12 @@ exports.reserve = function(req, res) {
 
 	const parameters = req.body.queryResult.parameters;
 	let
-		room     = parameters.room,
-		time     = parameters.time || '01:00:00',
-		date     = parameters.date || '2018-10-21',
-		subject  = 'Nexie\'s Cool Meeting',
-		duration = '1';
+		room      = parameters.room,
+		attendees = parameters.attendees,
+		time      = parameters.time || '01:00:00',
+		date      = parameters.date || '2018-10-21',
+		subject   = 'Nexie\'s Cool Meeting',
+		duration  = '1';
 
 	time = time.split('T')[1];
 	time = time.split('-')[0];
@@ -104,7 +105,7 @@ exports.reserve = function(req, res) {
 
 	const room_name = room[0].toUpperCase() + '-' + room[1].charAt(0).toUpperCase() + room[1].substr(1) + ' ' + room[2];
 
-	attendees = [
+	let invites = [
 		{
 			"emailAddress": {
 				"address": room.join('') + "@nexient.com",
@@ -121,49 +122,64 @@ exports.reserve = function(req, res) {
 		}
 	];
 
-	fetch('https://graph.microsoft.com/v1.0/me/events', {
-		method: "POST",
+	console.log(attendees);
+
+	fetch("https://graph.microsoft.com/v1.0/users?$filter=givenName eq '" + name[0] + "' and surname eq '" + name[1] + "'", {
+		method: "GET",
 		headers: {
 			"Content-Type": "application/json; charset=utf-8",
 			"Authorization": `Bearer ${token}`,
-		},
-		body: JSON.stringify({
-			"subject": subject,
-			"body": {
-				"contentType": "HTML",
-				"content": "Regards from Nexie :)"
-			},
-			"start": {
-				"dateTime": startTime,
-				"timeZone": "Eastern Standard Time"
-			},
-			"end": {
-				"dateTime": endTime,
-				"timeZone": "Eastern Standard Time"
-			},
-			"location":{
-				"displayName": room_name
-			},
-			"attendees": attendees
-		}),
+		}
 	})
 	.then(function(response) {
 		return response.json();
 	})
 	.then(function(myJson) {
-		res.setHeader('Content-Type', 'application/json');
-		res.json({
-			"fulfillmentText": 'Reserved ' + room.join(' '),
-			"fulfillmentMessages": [
-				{
-				"text": {
-					"text": [
-						'Reserved ' + room.join(' ')
-					]
-				}
-				}
-			]
+		fetch('https://graph.microsoft.com/v1.0/me/events', {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json; charset=utf-8",
+				"Authorization": `Bearer ${token}`,
+			},
+			body: JSON.stringify({
+				"subject": subject,
+				"body": {
+					"contentType": "HTML",
+					"content": "Regards from Nexie :)"
+				},
+				"start": {
+					"dateTime": startTime,
+					"timeZone": "Eastern Standard Time"
+				},
+				"end": {
+					"dateTime": endTime,
+					"timeZone": "Eastern Standard Time"
+				},
+				"location":{
+					"displayName": room_name
+				},
+				"attendees": attendees
+			}),
+		})
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(myJson) {
+			res.setHeader('Content-Type', 'application/json');
+			res.json({
+				"fulfillmentText": 'Reserved ' + room.join(' '),
+				"fulfillmentMessages": [
+					{
+					"text": {
+						"text": [
+							'Reserved ' + room.join(' ')
+						]
+					}
+					}
+				]
+			});
+			console.log(JSON.stringify(myJson));
 		});
-		console.log(JSON.stringify(myJson));
 	});
+
 };
