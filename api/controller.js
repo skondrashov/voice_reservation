@@ -37,6 +37,7 @@ exports.reserve = function(req, res) {
 		time = time.split('T')[1];
 		time = time.split('-')[0];
 
+		date = date.split('T')[0];
 		date = date.split('-');
 		date = '2018-' + date[1] + '-' + date[2];
 
