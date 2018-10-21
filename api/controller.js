@@ -73,6 +73,10 @@ exports.reserve = function(req, res) {
 
 	const room_name = room[0].toUpperCase() + '-' + room[1].charAt(0).toUpperCase() + room[1].substr(1) + ' ' + room[2];
 
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({ speech: 'room' }));
+    return;
+
 	fetch('https://graph.microsoft.com/v1.0/me/events', {
 		method: "POST",
 		headers: {
