@@ -4,6 +4,8 @@ const fetch = require('node-fetch');
 exports.reserve = function(req, res) {
 	// fetch("https://graph.microsoft.com/v1.0/users?$filter=givenName eq 'Timofey' or surname eq 'Kondrashof'", {});
 
+	console.log(req.body);
+
 	let room = req.body.room.toLowerCase().split(' ');
 	if (room.length != 3)
 		throw new Error("Room name should consist of three words. Received: " + req.body.room);
