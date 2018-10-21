@@ -15,13 +15,13 @@ if (!url.includes('access_token')) {
 	const urlsplit = url.split("access_token=");
 	const access_token = urlsplit[1].split('&')[0];
 
-	fetch('https://localhost:3000/reserve', {
+	fetch('https://35.202.128.208/reserve', {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json; charset=utf-8",
 		},
 		body: JSON.stringify({
-			"token": access_token,
+			"token": 'access_token',
 		}),
 	});
 };
