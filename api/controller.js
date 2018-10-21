@@ -22,8 +22,6 @@ function error(speech, log)
 }
 
 exports.reserve = function(req, res) {
-	console.log(req.body);
-
 	const parameters = req.body.queryResult.parameters;
 	let
 		room      = parameters.room,
@@ -122,7 +120,9 @@ exports.reserve = function(req, res) {
 		return response.json();
 	})
 	.then(function(myJson) {
+		console.log("bunga");
 		console.log(myJson);
+		console.log("binga");
 
 		fetch('https://graph.microsoft.com/v1.0/me/events', {
 			method: "POST",
