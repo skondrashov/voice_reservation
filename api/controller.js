@@ -7,9 +7,9 @@ exports.reserve = function(req, res) {
 	console.log(req.body);
 	const parameters = req.body.queryResult.parameters;
 	let
-		date     = parameters.date     || '2018-11-20',
+		room     = parameters.room,
+		date     = parameters.date     || '2018-11-11',
 		time     = parameters.time     || '01:00:00',
-		room     = parameters.room     || 'north huddle two',
 		subject  = parameters.subject  || 'very cool stuff only',
 		duration = parameters.duration || '1';
 
@@ -21,7 +21,6 @@ exports.reserve = function(req, res) {
 	let endTime = date + 'T' + (time[0]+parseInt(duration)) + ':' + time[1] + ':00';
 
 	room = room.toLowerCase().split(/[ \-]/);
-	console.log(room);
 	if (room.length != 3)
 		throw new Error("Room name should consist of three words. Received: " + req.body.room);
 
@@ -72,7 +71,6 @@ exports.reserve = function(req, res) {
 
     res.setHeader('Content-Type', 'application/json');
     res.json({ speech: 'room' });
-    return JSON.stringify({ speech: 'room lols' });
 
 	fetch('https://graph.microsoft.com/v1.0/me/events', {
 		method: "POST",
