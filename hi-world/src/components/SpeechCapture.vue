@@ -67,6 +67,7 @@ export default {
         // We then return the transcript property of the SpeechRecognitionAlternative object
         var speechResult = event.results[0][0].transcript;
         speechResult = speechResult.replace("Hudl", "Huddle");
+        console.log(speechResult);
 
         client.textRequest(speechResult).then((response) => {
           var speechResponse = response.result.fulfillment['speech'];
