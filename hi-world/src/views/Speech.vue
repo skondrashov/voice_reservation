@@ -58,7 +58,7 @@ export default {
   .headerBar {
     height: 12%;
     width: 100%;
-    background-color: darkcyan;
+    background-color: darkturquoise;
     top: 0;
     left: 0;
     color: white;
@@ -67,7 +67,7 @@ export default {
   .footerBar {
     height: 12%;
     width: 100%;
-    background-color: darkcyan;
+    background-color: darkturquoise;
     bottom: 0;
     position: fixed;
     left: 0;
