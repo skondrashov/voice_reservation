@@ -223,4 +223,5 @@ exports.reserve = function(req, res) {
 		});
 	case 'finalize':
 		myJson.id = '';
+	}
 };
