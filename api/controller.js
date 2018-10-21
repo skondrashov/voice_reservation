@@ -173,9 +173,8 @@ exports.reserve = function(req, res) {
 		});
 	case 'input.meeting_update':
 		// fetch("https://graph.microsoft.com/v1.0/users?$filter=givenName eq 'Timofey' or surname eq 'Kondrashof'", {});
-		PATCH https://graph.microsoft.com/beta/me/events/{id}
-		fetch('https://graph.microsoft.com/v1.0/me/events', {
-			method: "POST",
+		fetch('https://graph.microsoft.com/v1.0/me/events/' + meeting_id, {
+			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json; charset=utf-8",
 				"Authorization": `Bearer ${token}`,
